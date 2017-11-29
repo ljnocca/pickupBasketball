@@ -1,4 +1,4 @@
-<h1>Next Game is: {{nextGame}}</h1>
+<h1>Next Game is: {{nextGame}} <i class="material-icons">watch</i> </h1>
 <hr>
 <h3>My Status For Next Game Is: <span [ngClass]="{in: status =='IN', out: status =='OUT'}">{{status}}</span></h3>
 <mat-slide-toggle (click)="onSlide()">
@@ -7,5 +7,5 @@
 <button (click)="onAdd()">Update My Status!</button>
 <hr>
 <app-players></app-players>
-<p *ngFor="let player of players"> {{player.firstName}} is {{player.status}}</p>
+<p *ngFor="let player of players"> {{player.firstName}} is {{player.status}} <i class="material-icons">thumb_down</i> <i class="material-icons">thumb_up</i></p>
 

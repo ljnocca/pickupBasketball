@@ -20,7 +20,10 @@ export class NextGameComponent implements OnInit {
     this.http.get('https://pickupbasketball-11fc7.firebaseio.com/players.json')
       .subscribe(
         (response: Response) => {
-          this.players = response.json();
+          if (response.json() !== null) {
+            // if players already exist, set the player array to what is already stored in Firebase
+            this.players = response.json();
+          }
         }
       );
   }
@@ -34,16 +37,17 @@ export class NextGameComponent implements OnInit {
   }
 
   onAdd() {
-    this.http.put('https://pickupbasketball-11fc7.firebaseio.com/players.json', this.players.slice())
+    const player = new Player(
+      'firstName', 'lastname', 'email', 'password', this.status
+    );
+    this.players.push(player);
+
+    this.http.put('https://pickupbasketball-11fc7.firebaseio.com/players.json', this.players)
       .subscribe(
         (response: Response) => {
           console.log(response);
         }
       );
-    const player = new Player(
-      'firstName', 'lastname', 'email', 'password', this.status
-    )
-    this.players.push(player);
   }
 
 
