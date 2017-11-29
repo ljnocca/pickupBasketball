@@ -28,7 +28,7 @@ import {PlayerService} from './players/player.service';
 import {HttpModule} from '@angular/http';
 
 const appRoutes: Routes = [
-  { path: '', component: NextGameComponent},
+  { path: '', component: SignInComponent},
   { path: 'signup', component: SignUpComponent},
   { path: 'signin', component: SignInComponent},
   { path: 'calendar', component: CalendarComponent},

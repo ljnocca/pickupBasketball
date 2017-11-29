@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 })
 export class AppComponent implements OnInit{
   ngOnInit() {
+    // configure firebase
     firebase.initializeApp({
       apiKey: 'AIzaSyBgX0CnmLGEXxIJB2NzsFLSTK89okqIV0M',
       authDomain: 'pickupbasketball-11fc7.firebaseapp.com'

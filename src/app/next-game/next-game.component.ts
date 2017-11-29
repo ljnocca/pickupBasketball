@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {Player} from '../players/player.model';
 import {NgForm} from '@angular/forms';
 import {Http, Response} from '@angular/http';
+import {AuthService} from '../auth/auth.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-next-game',
@@ -14,10 +16,14 @@ export class NextGameComponent implements OnInit {
   public status = 'OUT';
   public players: Array<Player> = [];
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private authService: AuthService) { }
 
   ngOnInit() {
-    this.http.get('https://pickupbasketball-11fc7.firebaseio.com/players.json')
+    const token = this.authService.getToken();
+    console.log('token oninit', token);
+
+    this.http.get('https://pickupbasketball-11fc7.firebaseio.com/players.json?auth=' + token)
       .subscribe(
         (response: Response) => {
           if (response.json() !== null) {
@@ -38,11 +44,12 @@ export class NextGameComponent implements OnInit {
 
   onAdd() {
     const player = new Player(
-      'firstName', 'lastname', 'email', 'password', this.status
+      'firstName', 'lastname', 'email', this.status
     );
     this.players.push(player);
 
-    this.http.put('https://pickupbasketball-11fc7.firebaseio.com/players.json', this.players)
+    const token = this.authService.getToken();
+    this.http.put('https://pickupbasketball-11fc7.firebaseio.com/players.json?auth=' + token, this.players)
       .subscribe(
         (response: Response) => {
           console.log(response);

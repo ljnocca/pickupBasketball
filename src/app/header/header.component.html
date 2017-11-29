@@ -3,20 +3,25 @@
 </mat-card-title>
 <hr>
 <nav mat-tab-nav-bar class="lib-flex">
-  <a mat-tab-link
-     routerLink="/nextgame">
-    Next Game
-  </a>
-  <a mat-tab-link
-     routerLink="/calendar">
-    Calendar
-  </a>
-  <a mat-tab-link
-     routerLink="/signin">
-    Sign In
-  </a>
-  <a mat-tab-link
-     routerLink="/signup">
-    Register
-  </a>
+  <ng-template [ngIf]="authService.isAuthenticated()">
+    <a mat-tab-link
+       routerLink="/nextgame">
+      Next Game
+    </a>
+    <a mat-tab-link
+       routerLink="/calendar">
+      Calendar
+    </a>
+  </ng-template>
+  <ng-template [ngIf]="!authService.isAuthenticated()">
+    <a mat-tab-link
+       routerLink="/signin">
+      Sign In
+    </a>
+    <a mat-tab-link
+       routerLink="/signup">
+      Register
+    </a>
+  </ng-template>
+
 </nav>
