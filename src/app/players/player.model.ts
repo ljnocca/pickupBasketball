@@ -3,9 +3,9 @@ export class Player {
   public lastName: string;
   public email: string;
   public password: string;
-  public status: boolean;
+  public status: string;
 
-  constructor (firstName: string, lastName: string, email: string, password: string, status: boolean) {
+  constructor (firstName: string, lastName: string, email: string, password: string, status: string) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;

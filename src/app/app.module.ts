@@ -24,6 +24,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import {FormsModule} from '@angular/forms';
 import { PlayersComponent } from './players/players.component';
 import {AuthService} from './auth/auth.service';
+import {PlayerService} from './players/player.service';
+import {HttpModule} from '@angular/http';
 
 const appRoutes: Routes = [
   { path: '', component: NextGameComponent},
@@ -46,6 +48,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     NoopAnimationsModule,
     RouterModule.forRoot(appRoutes),
     MatMenuModule,
@@ -60,7 +63,10 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatButtonModule,
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    PlayerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

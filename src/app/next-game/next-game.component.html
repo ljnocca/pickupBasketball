@@ -4,5 +4,8 @@
 <mat-slide-toggle (click)="onSlide()">
   Slide to toggle your status for next game!
 </mat-slide-toggle>
+<button (click)="onAdd()">Update My Status!</button>
 <hr>
 <app-players></app-players>
+<p *ngFor="let player of players"> {{player.firstName}} is {{player.status}}</p>
+

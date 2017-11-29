@@ -15,11 +15,13 @@ export class SignUpComponent implements OnInit {
   }
 
   onSignup(form: NgForm) {
+    // retrieve values from signup form
     const fname = form.value.fname;
     const lname = form.value.lname;
     const email = form.value.email;
     const password = form.value.password;
 
+    // create user in Firebase
     this.authService.signupUser(email, password);
 
   }
