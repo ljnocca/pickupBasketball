@@ -1,5 +1,8 @@
 <h1>Next Game is: {{nextGame}}</h1>
+<hr>
 <h3>My Status For Next Game Is: <span [ngClass]="{in: status =='IN', out: status =='OUT'}">{{status}}</span></h3>
 <mat-slide-toggle (click)="onSlide()">
   Slide to toggle your status for next game!
 </mat-slide-toggle>
+<hr>
+<app-players></app-players>
