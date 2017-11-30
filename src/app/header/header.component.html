@@ -1,31 +1,32 @@
-<mat-card-title>
-  <h1 class="title"> <span><img class="basketall" src="../../assets/images/basketball.svg"></span> LIFE TIME Basketball <span><img class="basketall" src="../../assets/images/basketball.svg"></span></h1>
-</mat-card-title>
-<hr>
-<nav mat-tab-nav-bar class="lib-flex">
-  <ng-template [ngIf]="authService.isAuthenticated()">
-    <a mat-tab-link
-       routerLink="/nextgame">
-      Next Game
-    </a>
-    <a mat-tab-link
-       routerLink="/calendar">
-      Calendar
-    </a>
-    <a mat-tab-link
-       (click)="onLogout()">
-      Logout
-    </a>
-  </ng-template>
-  <ng-template [ngIf]="!authService.isAuthenticated()">
-    <a mat-tab-link
-       routerLink="/signin">
-      Sign In
-    </a>
-    <a mat-tab-link
-       routerLink="/signup">
-      Register
-    </a>
-  </ng-template>
-
-</nav>
+<div class="container lib-flex lib-stack lib-cross-center">
+  <mat-card-title>
+    <h1 class="title"> <span><img class="basketall" src="../../assets/images/basketball.svg"></span> LIFE TIME Basketball <span><img class="basketall" src="../../assets/images/basketball.svg"></span></h1>
+  </mat-card-title>
+  <hr>
+  <nav mat-tab-nav-bar class="lib-flex">
+    <ng-template [ngIf]="authService.isAuthenticated()">
+      <a mat-tab-link
+         routerLink="/nextgame">
+        Next Game
+      </a>
+      <a mat-tab-link
+         routerLink="/calendar">
+        Calendar
+      </a>
+      <a mat-tab-link
+         (click)="onLogout()">
+        Logout
+      </a>
+    </ng-template>
+    <ng-template [ngIf]="!authService.isAuthenticated()">
+      <a mat-tab-link
+         routerLink="/signin">
+        Sign In
+      </a>
+      <a mat-tab-link
+         routerLink="/signup">
+        Register
+      </a>
+    </ng-template>
+  </nav>
+</div>

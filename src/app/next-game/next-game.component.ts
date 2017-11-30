@@ -13,25 +13,30 @@ import * as firebase from 'firebase';
 })
 export class NextGameComponent implements OnInit {
   public nextGame;
+  public loggedInEmail;
+  public loggedInPlayer: Player;
   public status = 'OUT';
   public players: Array<Player> = [];
+  token: string;
 
   constructor(private http: Http,
               private authService: AuthService) { }
 
   ngOnInit() {
-    const token = this.authService.getToken();
-    console.log('token oninit', token);
+    this.token = this.authService.getToken();
 
-    this.http.get('https://pickupbasketball-11fc7.firebaseio.com/players.json?auth=' + token)
+    this.http.get('https://pickupbasketball-11fc7.firebaseio.com/players.json?auth=' + this.token)
       .subscribe(
         (response: Response) => {
           if (response.json() !== null) {
             // if players already exist, set the player array to what is already stored in Firebase
             this.players = response.json();
           }
+          console.log('players are:', this.players);
         }
       );
+    this.loggedInEmail = firebase.auth().currentUser.email;
+    console.log('email', this.loggedInEmail);
   }
 
   onSlide() {
@@ -43,17 +48,23 @@ export class NextGameComponent implements OnInit {
   }
 
   onAdd() {
-    const player = new Player(
-      'firstName', 'lastname', 'email', this.status
-    );
-    this.players.push(player);
+    let loggedInUserIndex;
+    for (let i = 0; i < this.players.length; i++) {
+      console.log('player ' + i + this.players[i]);
+      if (this.loggedInEmail === this.players[i].email) {
+        loggedInUserIndex = i;
+        this.players[loggedInUserIndex].status = this.status;
+      }
+    }
+    console.log('index of logged in user is ', loggedInUserIndex);
 
-    const token = this.authService.getToken();
-    this.http.put('https://pickupbasketball-11fc7.firebaseio.com/players.json?auth=' + token, this.players)
+    this.http.put('https://pickupbasketball-11fc7.firebaseio.com/players.json?auth=' + this.token, this.players)
       .subscribe(
-        (response: Response) => {
-          console.log(response);
-        }
+        (putResponse: Response) => {
+          console.log('successfully saved new players array');
+          console.log(putResponse);
+        },
+        (error) => console.log(error)
       );
   }
 

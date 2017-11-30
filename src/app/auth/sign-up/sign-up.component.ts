@@ -12,6 +12,7 @@ import {Http, Response} from '@angular/http';
 export class SignUpComponent implements OnInit {
   public status = 'OUT';
   public players: Array<Player> = [];
+  public loggedInPlayer: Player;
 
   constructor(
     private authService: AuthService,
@@ -28,22 +29,12 @@ export class SignUpComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
 
-    // create user in Firebase
-    this.authService.signupUser(email, password);
-
-    const player = new Player(
-      fname, lname, email, this.status
+    this.loggedInPlayer = new Player(
+      fname, lname, email, this.status, password
     );
 
-    this.players.push(player);
-
-    this.http.put('https://pickupbasketball-11fc7.firebaseio.com/players.json', this.players)
-      .subscribe(
-        (response: Response) => {
-          console.log(response);
-        }
-      );
-
+    // create user in Firebase
+    this.authService.signupUser(this.loggedInPlayer);
   }
 
 }
