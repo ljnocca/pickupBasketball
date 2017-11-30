@@ -26,13 +26,14 @@ import { PlayersComponent } from './players/players.component';
 import {AuthService} from './auth/auth.service';
 import {PlayerService} from './players/player.service';
 import {HttpModule} from '@angular/http';
+import {AuthGuardService} from './auth/auth-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: SignInComponent},
   { path: 'signup', component: SignUpComponent},
   { path: 'signin', component: SignInComponent},
-  { path: 'calendar', component: CalendarComponent},
-  { path: 'nextgame', component: NextGameComponent}
+  { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuardService]},
+  { path: 'nextgame', component: NextGameComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({
@@ -65,6 +66,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
+    AuthGuardService,
     PlayerService
   ],
   bootstrap: [AppComponent]

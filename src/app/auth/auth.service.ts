@@ -1,12 +1,20 @@
 import * as firebase from 'firebase';
+import {Router} from '@angular/router';
+import {Injectable} from '@angular/core';
 
+@Injectable()
 export class AuthService {
   token: string;
+
+  constructor(private router: Router) { }
 
   signupUser (email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(
-        success => console.log('Successfully signed up!')
+        success => {
+          console.log('Successfully signed up!');
+          this.router.navigate(['/nextgame']);
+        }
       )
       .catch(
         error => console.log('There was an error signing up: ', error)
@@ -17,6 +25,7 @@ export class AuthService {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
         response => {
+          this.router.navigate(['/nextgame']);
           firebase.auth().currentUser.getIdToken()
             .then(
               (token: string) => {
@@ -30,6 +39,12 @@ export class AuthService {
       .catch(
         error => console.log('There was an error signing in: ', error)
       );
+  }
+
+  logoutUser() {
+    firebase.auth().signOut();
+    this.token = null;
+    this.router.navigate(['/']);
   }
 
   getToken() {

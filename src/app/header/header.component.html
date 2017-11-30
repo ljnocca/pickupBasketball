@@ -12,6 +12,10 @@
        routerLink="/calendar">
       Calendar
     </a>
+    <a mat-tab-link
+       (click)="onLogout()">
+      Logout
+    </a>
   </ng-template>
   <ng-template [ngIf]="!authService.isAuthenticated()">
     <a mat-tab-link
