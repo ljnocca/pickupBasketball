@@ -45,7 +45,6 @@ export class AuthService {
                               .subscribe(
                                 (putResponse: Response) => {
                                   console.log('successfully saved new players array');
-                                  console.log(putResponse);
                                   this.router.navigate(['/nextgame']);
                                 },
                                 (error) => console.log(error)
@@ -95,12 +94,7 @@ export class AuthService {
           this.token = token;
         }
       );
-    console.log('token is ', this.token);
     return this.token;
-  }
-
-  getLoggedInUser() {
-    // firebase.auth().currentUser.
   }
 
   isAuthenticated() {

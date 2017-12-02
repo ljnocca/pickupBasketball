@@ -20,7 +20,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { NextGameComponent } from './next-game/next-game.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
-import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarComponent } from './next-game/calendar/calendar.component';
 import {FormsModule} from '@angular/forms';
 import { PlayersComponent } from './players/players.component';
 import {AuthService} from './auth/auth.service';

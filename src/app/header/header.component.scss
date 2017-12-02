@@ -2,8 +2,27 @@
 
 .title{
   text-align: center;
+  color: #CCCCCC;
+  font-size: 36px;
+  margin: 0;
+}
+
+.lifetime{
+  text-align: center;
+  padding-top: 20px;
 }
 
 img.basketall {
   width: 30px;
+}
+
+.container{
+  background-color: #444;
+}
+
+a{
+  color: white;
+  &:hover{
+    background-color: #0078aa;
+  }
 }

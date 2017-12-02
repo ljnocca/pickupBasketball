@@ -1,7 +1,19 @@
+@import '../../../src/_globalVariables.scss';
+
 .out{
   color: red;
 }
 
 .in{
   color: green;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statusDiv{
+  justify-content: space-evenly;
 }
