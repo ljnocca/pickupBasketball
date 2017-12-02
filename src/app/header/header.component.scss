@@ -2,7 +2,7 @@
 
 .title{
   text-align: center;
-  color: #CCCCCC;
+  color: $app-grey;
   font-size: 36px;
   margin: 0;
 }
@@ -17,12 +17,12 @@ img.basketall {
 }
 
 .container{
-  background-color: #444;
+  background-color: $app-black;
 }
 
 a{
   color: white;
   &:hover{
-    background-color: #0078aa;
+    background-color: $app-blue;
   }
 }

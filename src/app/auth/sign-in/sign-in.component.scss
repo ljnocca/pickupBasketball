@@ -1,9 +1,14 @@
+@import '../../../../src/_globalVariables.scss';
+
 .formField {
   width: 65%;
 }
 
 form {
   width: 100%;
+  p{
+    color: $app-blue;
+  };
 }
 
 #formContainer{

@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>The next game is: {{nextGame}} <i class="material-icons">watch</i> </h1>
+  <h1>The next game is: {{nextGame}}</h1>
   <app-calendar></app-calendar>
   <hr>
   <h3>My Status For Next Game Is: <span [ngClass]="{in: status =='IN', out: status =='OUT'}">{{status}}</span></h3>
@@ -11,22 +11,22 @@
 <hr>
 <div class="lib-flex statusDiv">
   <div>
-    <h1>PLAYERS IN: {{playersIn.length}}</h1>
+    <h3>PLAYERS IN: {{playersIn.length}}</h3>
     <div *ngFor="let player of playersIn">
       {{player.firstName}} is {{player.status}}
     </div>
   </div>
 
+  <div class="split"></div>
+
   <div>
-    <h1>PLAYERS OUT: {{playersOut.length}}</h1>
+    <h3>PLAYERS OUT: {{playersOut.length}}</h3>
     <div *ngFor="let player of playersOut">
       {{player.firstName}} is {{player.status}}
     </div>
   </div>
 
-  <!--<p *ngFor="let player of players" class="lib-tt-uppercase">-->
-    <!---->
     <!--<i class="material-icons" *ngIf="player.status === 'OUT'">thumb_down</i>-->
     <!--<i class="material-icons" *ngIf="player.status === 'IN'">thumb_up</i>-->
-  <!--</p>-->
+
 </div>
