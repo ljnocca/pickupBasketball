@@ -37,12 +37,14 @@
     <input required
            password
            matInput
-           type="password"
+           [type]="showPassword? 'text' : 'password'"
            placeholder="Password"
            name="password"
            ngModel
            #password="ngModel"
     >
+    <i *ngIf="!showPassword" class="material-icons" (click)="toggleShowPassword()">visibility</i>
+    <i *ngIf="showPassword" class="material-icons" (click)="toggleShowPassword()">visibility_off</i>
     <mat-error *ngIf="password.invalid">Please make sure your password is at least 6 characters long</mat-error>
   </mat-form-field>
 

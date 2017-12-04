@@ -1,5 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
-import * as moment from 'moment';
+import {Component, OnInit} from '@angular/core';
 import {Player} from '../players/player.model';
 import {Http, Response} from '@angular/http';
 import {AuthService} from '../auth/auth.service';
@@ -10,7 +9,7 @@ import * as firebase from 'firebase';
   templateUrl: './next-game.component.html',
   styleUrls: ['./next-game.component.scss']
 })
-export class NextGameComponent implements OnInit, OnChanges {
+export class NextGameComponent implements OnInit {
   public nextGame;
   public loggedInEmail;
   public loggedInUserIndex;
@@ -26,8 +25,6 @@ export class NextGameComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.token = this.authService.getToken();
-    console.log('checked', this.checked);
-    console.log('status', this.status);
     this.http.get('https://pickupbasketball-11fc7.firebaseio.com/players.json?auth=' + this.token)
       .subscribe(
         (response: Response) => {
@@ -57,20 +54,12 @@ export class NextGameComponent implements OnInit, OnChanges {
               this.playersOut.push(this.players[i]);
             }
           }
-          console.log('checked', this.checked);
-          console.log('status', this.status);
         }
       );
   }
 
-  ngOnChanges() {
-    // for (let i = 0; i < this.players.length; i++) {
-    //   if (this.players[i].status === 'IN') {
-    //     this.playersIn.push(this.players[i]);
-    //   } else if (this.players[i].status === 'OUT') {
-    //     this.playersOut.push(this.players[i]);
-    //   }
-    // }
+  refreshDays() {
+
   }
 
   onSlide() {
@@ -83,7 +72,6 @@ export class NextGameComponent implements OnInit, OnChanges {
     }
 
     for (let i = 0; i < this.players.length; i++) {
-      console.log('player ' + i + this.players[i]);
       if (this.loggedInEmail === this.players[i].email) {
         this.players[this.loggedInUserIndex].status = this.status;
       }

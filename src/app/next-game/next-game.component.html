@@ -1,8 +1,8 @@
 <div class="container">
   <h1>The next game is: {{nextGame}}</h1>
-  <app-calendar></app-calendar>
+  <app-calendar [players]="players"></app-calendar>
   <hr>
-  <h3>My Status For Next Game Is: <span [ngClass]="{in: status =='IN', out: status =='OUT'}">{{status}}</span></h3>
+  <h3>My Status For Next Game Is: <span [ngClass]="{statusIn: status =='IN', statusOut: status =='OUT'}">{{status}}</span></h3>
   <mat-slide-toggle (click)="onSlide()" [checked]="checked">
     Slide to toggle your status for next game!
   </mat-slide-toggle>
@@ -12,8 +12,8 @@
 <div class="lib-flex statusDiv">
   <div>
     <h3>PLAYERS IN: {{playersIn.length}}</h3>
-    <div *ngFor="let player of playersIn">
-      {{player.firstName}} is {{player.status}}
+    <div *ngFor="let player of playersIn; let i = index">
+      {{i+1}} - {{player.firstName}} {{player.lastName}}
     </div>
   </div>
 
@@ -21,8 +21,8 @@
 
   <div>
     <h3>PLAYERS OUT: {{playersOut.length}}</h3>
-    <div *ngFor="let player of playersOut">
-      {{player.firstName}} is {{player.status}}
+    <div *ngFor="let player of playersOut; let i = index">
+      {{i+1}} {{player.firstName}} {{player.lastName}}
     </div>
   </div>
 

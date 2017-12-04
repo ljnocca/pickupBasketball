@@ -13,6 +13,7 @@ export class SignUpComponent implements OnInit {
   public status = 'OUT';
   public players: Array<Player> = [];
   public loggedInPlayer: Player;
+  public showPassword: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -35,6 +36,10 @@ export class SignUpComponent implements OnInit {
 
     // create user in Firebase
     this.authService.signupUser(this.loggedInPlayer);
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
 }

@@ -8,6 +8,7 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+  public showPassword: boolean = false;
 
   constructor(private authService: AuthService) { }
 
@@ -18,6 +19,10 @@ export class SignInComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     this.authService.signinUser(email, password);
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
 }
